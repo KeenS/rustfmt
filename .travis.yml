@@ -7,3 +7,17 @@ sudo: false
 script:
  - cargo build
  - cargo test
+ - cargo build --release
+# - cargo build --release --target=xxx
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "i4vPP9C6zFEobiwVhbn+yMafof53iMY84b4ZHzrUdbA5gTQpGd52Uo2gEDstxPPaFa9GaNWgAB6s6egg9cNQSY0AqYZAf1Y1+uknX+rpBT9zHUS0hGPjEvwmllEXvJNjMJ7wVfjK2+CNTN9bvQ1wGDiwITqfc5FYR/uXOgOOC69GUV4ju+v3JsQOOLX/jugr6+7TvpFO83rQX83pEcHen9CVNoFgx8ZxpmRK0Ol/Vj00gN6IvbtoAGTd+e4uHE5XkhnMs05HxrMm1W0o+Xkkzx2+Z227HiQeWZCIjjX42+w6/uTdUtFbPxj3AKt38lYTXqAB/XwIYfu+sLjYM9QiQ2Gt3Df8dm8NGKeCUzfEzmKGpDQgM1zW8sQtl2dIEa83UCT4urKlJVji3zdy5f4MD4zH6ybzvFHB+HKl/Ehh/sJC9Oi67UCmwUuOGS34YhHSVsX++vf4y5yq2mzMCU/VG07ifLY2XBUH/je5wvNO8H97luAKbdVXskCQXVcyWILd/Ybwz4CrhVud9AqIYb8qm4mK+vu8jaB4tyXRnB/SCyZx94Wobs8j8di/pJ+6MFEjkVbbxPywS+8gm6MVt19ommLK2i+oX24GwUbECcVvdM+oPvFMjFpgNL4SHdx6cscjmBipYtyBySAp80zE4jkzozL+oaX/w8QhNgrLHfEHg1I="
+  file:
+  - "target/release/rustfmt"
+#  - "target/xxx/release/rustfmt" 
+  on:
+    repo: KeenS/rustfmt
+    tags: true
+  skip_cleanup: true
