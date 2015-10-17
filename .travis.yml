@@ -9,7 +9,7 @@ os:
 script:
  - cargo build
  - cargo test
- - then cargo build --release
+ - cargo build --release
 
 before_deploy:
  - mv target/release/rustfmt rustfmt
