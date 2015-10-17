@@ -9,13 +9,11 @@ os:
 script:
  - cargo build
  - cargo test
- - if [ "$TRAVIS_OS_NAME" = "linux" ]; then cargo build --release --target=x86_64-unknown-linux-gnu ; fi
- - if [ "$TRAVIS_OS_NAME" = "osx"   ]; then cargo build --release --target=x86_64-apple-darwin ; fi
+ - then cargo build --release
 
 before_deploy:
- - if [ "$TRAVIS_OS_NAME" = "linux" ]; then mv target/x86_64-unknown-linux-gnu/release/rustfmt rustfmt ; fi
+ - mv target/release/rustfmt rustfmt
  - if [ "$TRAVIS_OS_NAME" = "linux" ]; then tar czf rustfmt-x86_64-unknown-linux-gnu.tar.gz Contributing.md Design.md README.md rustfmt ; fi
- - if [ "$TRAVIS_OS_NAME" = "osx"   ]; then mv  target/x86_64-apple-darwin/release/rustfmt rustfmt ; fi
  - if [ "$TRAVIS_OS_NAME" = "osx"   ]; then tar czf rustfmt-x86_64-apple-darwin.tar.gz Contributing.md Design.md README.md rustfmt ; fi
 deploy:
   provider: releases
